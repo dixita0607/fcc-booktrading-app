@@ -1,13 +1,19 @@
-<div *ngIf="requests">
-  <div *ngFor="let request of requests">
-    {{request.book.name}} <span *ngIf="request.status !== 'pending'"> - {{request.status}}</span>
-    <button *ngIf="request.status === 'pending'" type="button" (click)="respondTrade(request._id, 'accepted')"
-            [disabled]="loading">
-      Accept
-    </button>
-    <button *ngIf="request.status === 'pending'" type="button" (click)="respondTrade(request._id, 'rejected')"
-            [disabled]="loading">
-      Reject
-    </button>
+<div *ngIf="requests" class="requests">
+  <div *ngFor="let request of requests" class="request">
+    <div class="book-name">{{request.book.name}}</div>
+    <div class="requester">Requester - {{request.requester.fullName}}</div>
+    <div class="location">Location - {{request.requester.city}}, {{request.requester.state}}</div>
+    <div *ngIf="request.status !== 'pending'" class="status"> Status - {{request.status}}</div>
+    <div class="buttons">
+      <button *ngIf="request.status === 'pending'" type="button" (click)="respondTrade(request._id, 'accepted')"
+              [disabled]="loading" class="accept">
+        Accept
+      </button>
+      <button *ngIf="request.status === 'pending'" type="button" (click)="respondTrade(request._id, 'rejected')"
+              [disabled]="loading" class="reject">
+        Reject
+      </button>
+    </div>
   </div>
 </div>
+<div *ngIf="requests && requests.length <= 0" class="no-requests">No requests found</div>

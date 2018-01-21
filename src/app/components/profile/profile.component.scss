@@ -1,0 +1,40 @@
+@import "../../../variables";
+@import "../../../mixins";
+
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px auto;
+  .card {
+    width: 350px;
+    .control {
+      display: flex;
+      flex-direction: column;
+      padding: 4px;
+      .label {
+        font-size: 14px;
+        color: $secondaryTextColor;
+      }
+      input {
+        line-height: 24px;
+        outline: none;
+        border: 1px solid $dividerColor;
+        padding: 0 4px;
+        font-size: 14px;
+        &:focus {
+          border-color: $accentColor;
+        }
+      }
+    }
+    .button {
+      display: flex;
+      width: 100%;
+      padding: 4px;
+      button {
+        @include button($accentColor, $textAndIconsColor);
+        width: 100%;
+      }
+    }
+  }
+}

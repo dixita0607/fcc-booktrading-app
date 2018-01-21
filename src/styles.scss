@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+@import "variables";
+
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: GenBkBasR;
+  src: url("./assets/fonts/GenBkBasR.ttf");
+}
+
+body {
+  margin: 0;
+  font-family: GenBkBasR, 'sans-serif';
+  a {
+    text-decoration: none;
+    outline: none;
+  }
+
+  .card {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border: 2px solid lighten($accentColor, 25);
+    padding: 8px;
+    .card-header {
+      font-size: 24px;
+      color: $accentColor;
+      padding-bottom: 8px;
+      font-weight: bold;
+      text-align: center;
+      border-bottom: 1px solid lighten($accentColor, 25);
+    }
+    .card-content {
+      padding-top: 8px;
+    }
+  ;
+  }
+}

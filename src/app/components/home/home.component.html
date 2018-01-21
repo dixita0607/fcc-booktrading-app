@@ -1,5 +1,12 @@
-<div *ngIf="!authService.user">
+<div *ngIf="!authService.user" class="home">
   <a href="/api/auth/twitter">
-    <button type="button">Login With Twitter</button>
+    <button class="login">Login With Twitter</button>
   </a>
+  <div class="details">
+    A book trading management app.
+    Where you can see all the books posted by all the users.
+    You can add your books and trade for the posted books.
+    You can accept or reject trade requests from other users.
+    You can update your settings.
+  </div>
 </div>

@@ -1,0 +1,21 @@
+@import "../../../variables";
+
+.trades {
+  .trade {
+    border-bottom: 1px solid $dividerColor;
+    padding: 4px;
+    .book-name {
+      font-size: 20px;
+      font-weight: bold;
+      color: $primaryTextColor;
+    }
+    .owner, .status {
+      color: $secondaryTextColor;
+    }
+  }
+}
+
+.no-trades {
+  text-align: center;
+  color: $secondaryTextColor;
+}

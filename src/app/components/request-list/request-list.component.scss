@@ -1,0 +1,35 @@
+@import "../../../variables";
+@import "../../../mixins";
+
+.requests {
+  .request {
+    border-bottom: 1px solid $dividerColor;
+    padding: 4px;
+    .book-name {
+      font-size: 20px;
+      font-weight: bold;
+      color: $primaryTextColor;
+    }
+    .requester, .location, .status {
+      color: $secondaryTextColor;
+    }
+    .buttons {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 4px;
+      .accept {
+        @include button($accentColor, $textAndIconsColor);
+      }
+      .reject {
+        @include button($textAndIconsColor, $accentColor);
+        border: 1px solid $accentColor;
+      }
+    }
+  }
+}
+
+.no-requests {
+  text-align: center;
+  color: $secondaryTextColor;
+}

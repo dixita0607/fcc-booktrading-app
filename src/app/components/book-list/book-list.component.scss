@@ -1,0 +1,32 @@
+@import "../../../variables";
+@import "../../../mixins";
+
+.book-list {
+  .book {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px;
+    border-bottom: 1px solid $dividerColor;
+    .book-details {
+      .book-name {
+        font-size: 20px;
+        font-weight: bold;
+        color: $primaryTextColor;
+      }
+      .owner, .location {
+        color: $secondaryTextColor;
+      }
+    }
+    button {
+      @include button(transparent, $accentColor);
+    }
+  }
+}
+
+.no-books {
+  text-align: center;
+  width: 100%;
+  color: $secondaryTextColor;
+}
+

@@ -1,0 +1,11 @@
+@import "../variables";
+
+.title {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  padding: 8px 0;
+  background-color: $darkPrimaryColor;
+  color: $textAndIconsColor;
+}
+

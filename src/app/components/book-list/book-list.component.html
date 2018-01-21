@@ -1,6 +1,10 @@
-<div *ngIf="bookList && bookList.length > 0">
-  <div *ngFor="let book of bookList">
-    {{book.name}} - {{book.owner.fullName}}
+<div *ngIf="bookList && bookList.length > 0" class="book-list">
+  <div *ngFor="let book of bookList" class="book">
+    <div class="book-details">
+      <div class="book-name">{{book.name}}</div>
+      <div class="owner">Owner - {{book.owner.fullName}}</div>
+      <div class="location">Location - {{book.owner.city}}, {{book.owner.state}}</div>
+    </div>
     <button *ngIf="book.owner._id === authService.user._id" type="button" (click)="deleteBook(book._id)"
             [disabled]="loading">
       Delete
@@ -11,3 +15,4 @@
     </button>
   </div>
 </div>
+<div *ngIf="bookList && bookList.length <= 0" class="no-books">No books found</div>

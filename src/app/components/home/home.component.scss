@@ -1,0 +1,21 @@
+@import "../../../variables";
+@import "../../../mixins";
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px auto;
+  button {
+    @include button($accentColor, $textAndIconsColor);
+    font-size: 20px;
+    padding: 4px 8px;
+  }
+  .details {
+    padding: 40px;
+    text-align: center;
+    font-size: 20px;
+    color: $secondaryTextColor;
+    line-height: 30px;
+  }
+}

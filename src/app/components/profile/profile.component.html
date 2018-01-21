@@ -1,17 +1,24 @@
-<div *ngIf="authService.user">
-  <form [formGroup]="form" (ngSubmit)="updateProfile()">
-    <div>
-      <div>Full Name</div>
-      <input type="text" formControlName="fullName">
+<div class="profile">
+  <div *ngIf="authService.user" class="card">
+    <div class="card-header">User Details</div>
+    <div class="card-content">
+      <form [formGroup]="form" (ngSubmit)="updateProfile()">
+        <div class="control">
+          <div class="label">Full Name</div>
+          <input type="text" formControlName="fullName">
+        </div>
+        <div class="control">
+          <div class="label">City</div>
+          <input type="text" formControlName="city">
+        </div>
+        <div class="control">
+          <div class="label">State</div>
+          <input type="text" formControlName="state">
+        </div>
+        <div class="button">
+          <button type="submit" [disabled]="form.pristine || loading">Update</button>
+        </div>
+      </form>
     </div>
-    <div>
-      <div>City</div>
-      <input type="text" formControlName="city">
-    </div>
-    <div>
-      <div>State</div>
-      <input type="text" formControlName="state">
-    </div>
-    <button type="submit" [disabled]="form.pristine || loading">Update</button>
-  </form>
+  </div>
 </div>

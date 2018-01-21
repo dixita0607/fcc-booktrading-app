@@ -1,13 +1,22 @@
-<div>
+<div class="books">
   <form [formGroup]="form" (ngSubmit)="addBook(bookName.value)">
     <input type="text" formControlName="bookName" placeholder="Add new book" #bookName>
     <button type="submit" [disabled]="!form.controls['bookName'].value || loading">Add</button>
   </form>
+
+  <div class="lists">
+    <div class="list card">
+      <div class="card-header">My books</div>
+      <div class="card-content">
+        <fcc-book-list [bookList]="myBooks" (delete)="getBooks()"></fcc-book-list>
+      </div>
+    </div>
+    <div class="list card">
+      <div class="card-header">Other books</div>
+      <div class="card-content">
+        <fcc-book-list [bookList]="otherBooks" (request)="getBooks()"></fcc-book-list>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div>
-  <div>My books</div>
-  <fcc-book-list [bookList]="myBooks" (delete)="getBooks()"></fcc-book-list>
-  <div>Other books</div>
-  <fcc-book-list [bookList]="otherBooks" (request)="getBooks()"></fcc-book-list>
-</div>

@@ -1,5 +1,8 @@
-<div *ngIf="trades">
-  <div *ngFor="let trade of trades">
-    {{trade.book.name}} - {{trade.book.owner.fullName}} - {{trade.status}}
+<div *ngIf="trades" class="trades">
+  <div *ngFor="let trade of trades" class="trade">
+    <div class="book-name">{{trade.book.name}}</div>
+    <div class="owner">Owner - {{trade.book.owner.fullName}}</div>
+    <div class="status">Status - {{trade.status}}</div>
   </div>
 </div>
+<div *ngIf="trades && trades.length <= 0" class="no-trades">No trades found.</div>

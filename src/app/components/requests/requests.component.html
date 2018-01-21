@@ -1,6 +1,14 @@
-<div>
-  <div>Pending Request</div>
-  <fcc-request-list [requests]="pendingRequests" (respond)="getRequests()"></fcc-request-list>
-  <div>Previous Request</div>
-  <fcc-request-list [requests]="previousRequests" (respond)="getRequests()"></fcc-request-list>
+<div *ngIf="pendingRequests || previousRequests" class="requests">
+  <div class="card request">
+    <div class="card-header">Pending Request</div>
+    <div class="card-content">
+      <fcc-request-list [requests]="pendingRequests" (respond)="getRequests()"></fcc-request-list>
+    </div>
+  </div>
+  <div class="card request">
+    <div class="card-header">Previous Request</div>
+    <div class="card-content">
+      <fcc-request-list [requests]="previousRequests" (respond)="getRequests()"></fcc-request-list>
+    </div>
+  </div>
 </div>
