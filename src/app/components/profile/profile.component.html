@@ -1,0 +1,17 @@
+<div *ngIf="authService.user">
+  <form [formGroup]="form" (ngSubmit)="updateProfile()">
+    <div>
+      <div>Full Name</div>
+      <input type="text" formControlName="fullName">
+    </div>
+    <div>
+      <div>City</div>
+      <input type="text" formControlName="city">
+    </div>
+    <div>
+      <div>State</div>
+      <input type="text" formControlName="state">
+    </div>
+    <button type="submit" [disabled]="form.pristine || loading">Update</button>
+  </form>
+</div>

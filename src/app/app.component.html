@@ -1,0 +1,6 @@
+<h2>{{title}}</h2>
+<div *ngIf="authService.user">
+  <fcc-menu></fcc-menu>
+</div>
+<router-outlet></router-outlet>
+<fcc-toast></fcc-toast>

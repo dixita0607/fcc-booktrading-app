@@ -1,0 +1,6 @@
+<div>
+  <div>Pending Request</div>
+  <fcc-request-list [requests]="pendingRequests" (respond)="getRequests()"></fcc-request-list>
+  <div>Previous Request</div>
+  <fcc-request-list [requests]="previousRequests" (respond)="getRequests()"></fcc-request-list>
+</div>

@@ -1,0 +1,13 @@
+<div *ngIf="requests">
+  <div *ngFor="let request of requests">
+    {{request.book.name}} <span *ngIf="request.status !== 'pending'"> - {{request.status}}</span>
+    <button *ngIf="request.status === 'pending'" type="button" (click)="respondTrade(request._id, 'accepted')"
+            [disabled]="loading">
+      Accept
+    </button>
+    <button *ngIf="request.status === 'pending'" type="button" (click)="respondTrade(request._id, 'rejected')"
+            [disabled]="loading">
+      Reject
+    </button>
+  </div>
+</div>

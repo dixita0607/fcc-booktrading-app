@@ -1,0 +1,13 @@
+<div *ngIf="bookList && bookList.length > 0">
+  <div *ngFor="let book of bookList">
+    {{book.name}} - {{book.owner.fullName}}
+    <button *ngIf="book.owner._id === authService.user._id" type="button" (click)="deleteBook(book._id)"
+            [disabled]="loading">
+      Delete
+    </button>
+    <button type="button" *ngIf="book.owner._id !== authService.user._id" (click)="requestTrade(book._id)"
+            [disabled]="loading">
+      Trade
+    </button>
+  </div>
+</div>

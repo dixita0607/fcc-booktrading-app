@@ -1,0 +1,13 @@
+<div>
+  <form [formGroup]="form" (ngSubmit)="addBook(bookName.value)">
+    <input type="text" formControlName="bookName" placeholder="Add new book" #bookName>
+    <button type="submit" [disabled]="!form.controls['bookName'].value || loading">Add</button>
+  </form>
+</div>
+
+<div>
+  <div>My books</div>
+  <fcc-book-list [bookList]="myBooks" (delete)="getBooks()"></fcc-book-list>
+  <div>Other books</div>
+  <fcc-book-list [bookList]="otherBooks" (request)="getBooks()"></fcc-book-list>
+</div>

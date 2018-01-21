@@ -1,0 +1,323 @@
+openapi: 3.0.0
+info:
+  version: 0.0.1
+  title: FCC Book Trading App
+  license:
+    name: MIT
+paths:
+  /books:
+    get:
+      summary: Get all books
+      operationId: getBooks
+      responses:
+        200:
+          description: Returns all books
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Books'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Books not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Books
+    post:
+      summary: Post a book
+      operationId: addBook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  required: true
+      responses:
+        200:
+          description: Registers a book under the owner
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Books
+  /books/{bookId}:
+    delete:
+      summary: Delete book
+      operationId: deleteBook
+      parameters:
+        - name: bookId
+          in: path
+          description: Id of the book to be deleted
+      responses:
+        200:
+          description: Delete book
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Books
+  /trades:
+    get:
+      summary: Get user's trades
+      operationId: getTrades
+      responses:
+        200:
+          description: Returns user's trades (i.e. pending, accepted, rejected)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trades'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Trades not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Trades
+    post:
+      summary: Trade request
+      operationId: requestTrade
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                bookId:
+                  type: string
+                  required: true
+      responses:
+        200:
+          description: Acknowledgement of request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        409:
+          description: Already added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Trades
+  /trades/{tradeId}:
+    put:
+      summary: Respond to a trade request
+      operationId: respondTrade
+      parameters:
+        - name: tradeId
+          in: path
+          description: Id of the trade to be accepted or rejected
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  required: true
+                  enum:
+                    - accepted
+                    - rejected
+      responses:
+        200:
+          description: Accepted or rejected
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Trades
+  /user:
+    get:
+      summary: Get an authenticated user
+      operationId: getUser
+      responses:
+        200:
+          description: Authenticated user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Users
+    put:
+      summary: Update authenticated user's data
+      operationId: updateUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fullName:
+                  type: string
+                city:
+                  type: string
+                state:
+                  type: string
+      responses:
+        200:
+          description: Update user data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Success'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Users
+components:
+  schemas:
+    Book:
+      properties:
+        id:
+          type: string
+          required: true
+        name:
+          type: string
+          required: true
+        owner:
+          $ref: '#/components/schemas/User'
+    Books:
+      type: array
+      items:
+        $ref: '#/components/schemas/Book'
+    Trade:
+      type: object
+      properties:
+        _id:
+          type: string
+          required: true
+        requester:
+          $ref: '#/components/schemas/User'
+        book:
+          type: string
+          required: true
+        owner:
+         $ref: '#/components/schemas/User'
+        status:
+          type: string
+          enum:
+            - pending
+            - accepted
+            - rejected
+          default: pending
+    Trades:
+      type: array
+      items:
+        $ref: '#/components/schemas/Trade'
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+          required: true
+        fullName:
+          type: string
+          required: true
+        city:
+          type: string
+        state:
+          type: string
+    Success:
+      type: object
+    Error:
+      type: object

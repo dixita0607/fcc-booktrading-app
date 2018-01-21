@@ -1,0 +1,5 @@
+<div *ngIf="trades">
+  <div *ngFor="let trade of trades">
+    {{trade.book.name}} - {{trade.book.owner.fullName}} - {{trade.status}}
+  </div>
+</div>
