@@ -33,7 +33,7 @@ export class RequestsComponent implements OnInit {
           trade => trade.book.owner._id === this.authService.user._id && trade.status !== 'pending'
         )
       },
-      error => this.toastService.showToast('Could not fetch Requests.', true);
+      error => this.toastService.showToast('Could not fetch Requests.', true)
   )
   }
 
