@@ -19,7 +19,7 @@
       }
     }
     button {
-      @include button(transparent, $accentColor);
+      @include button($textAndIconsColor, $accentColor);
     }
   }
 }
